@@ -123,6 +123,9 @@ SELECT TOP 1 pr.id_pracownika, UPPER(pr.imie) as imie, UPPER(pr.nazwisko) as naz
 ORDER BY len(pr.nazwisko) DESC
 
 --d)
+SELECT HASHBYTES('MD5',imie) AS imie, HASHBYTES('MD5',nazwisko) AS nazwisko, HASHBYTES('MD5',adres) AS adres, HASHBYTES('MD5',telefon) AS telefon,HASHBYTES('MD5',CAST(kwota AS VARCHAR(12))) AS kwota FROM ksiegowosc.pracownicy pr
+JOIN ksiegowosc.wynagrodzenie wy ON wy.id_pracownika = pr.id_pracownika 
+JOIN ksiegowosc.pensje pe ON wy.id_pensji = pe.id_pensji;
 
 --e)
 SELECT pr.*,pe.kwota,pre.kwota FROM ksiegowosc.pracownicy as pr
